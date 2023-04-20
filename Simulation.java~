@@ -8,10 +8,10 @@ public class Simulation {
 
 	public double runSimulation() {
 		long sum = 0;
+		long count = 0;
 		for (int i = 0; i < this.sampleSize; i++) {
 			sum += getDistance(this.rng.getNextU(), this.rng.getNextU());
 		}
-		return (sum / this.sampleSize);
 	}
 
 	public void resetSimulation(int sampleSize) {
