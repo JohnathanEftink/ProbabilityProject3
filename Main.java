@@ -3,14 +3,17 @@ import java.io.FileWriter;
 import java.io.IOException;
 public class Main {
 	public static void main(String args[]){
-		File outFile = new File("simdata");
+		int samplesize = 1000; //change sample size here
+		String filename = "simdata" + samplesize;
+		File outFile = new File(filename);
+
 		Simulation sim;
 		try {
-			FileWriter writer = new FileWriter("simdata");
-			sim = new Simulation(10);
+			FileWriter writer = new FileWriter(filename);
+			sim = new Simulation(samplesize);
 			writer.write(String.valueOf(sim.runSimulation()) + '\n');
 			for (int i = 0; i < 110; i++) {
-				sim.resetSimulation(10);
+				sim.resetSimulation(samplesize);
 				writer.write(String.valueOf(sim.runSimulation()) + '\n');
 			}
 			writer.close();
