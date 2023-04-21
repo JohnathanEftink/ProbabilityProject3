@@ -3,7 +3,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 public class Main {
 	public static void main(String args[]){
-		int samplesize = 1000; //change sample size here
+		int samplesize = 10; //change sample size here
 		String filename = "simdata" + samplesize;
 		File outFile = new File(filename);
 
