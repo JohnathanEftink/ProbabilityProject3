@@ -4,7 +4,7 @@ public class RandNumberGenerator {
     private long x_prev;
     private static final int a = 24693;
     private static final short c = 3967;
-    private static final int K = 262144; // equal to 2^18
+    private static final int K = (int) Math.pow(2, 18); // equal to 2^18
     private int cnt;
 
     public RandNumberGenerator() {
@@ -15,7 +15,7 @@ public class RandNumberGenerator {
 
     private long getNextX() {
         this.cnt++;
-        //if(cnt == 51 || cnt == 52 || cnt == 53){System.out.println(((double)(a * this.x_prev + c) % K)/K);} /* line to print 51,52,53 values of u*/
+        if(cnt == 51 || cnt == 52 || cnt == 53){System.out.println(((double)(a * this.x_prev + c) % K)/K);} /* line to print 51,52,53 values of u*/
         return (a * this.x_prev + c) % K;
     }
 
@@ -23,7 +23,7 @@ public class RandNumberGenerator {
         long temp = this.x_i;
         this.x_prev = temp;
         this.x_i = getNextX();
-        return ((double) this.x_i / K);
+        return (((double) this.x_i) / K);
     }
 
     public int getCurrentCount() {

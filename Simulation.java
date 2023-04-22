@@ -12,10 +12,14 @@ public class Simulation {
 		this.stdDev = 57.0;
 	}
 
+	public static void main(String[] args) {
+		System.out.println(Simulation.getYVal(0.5, 0.0, 57.0));
+	}
+
 	public double runSimulation() {
 		double sum = 0;
 		for (int i = 0; i < this.sampleSize; i++) {
-			sum += getDistance(getYVal(), getYVal());
+			sum += getDistance(getYVal(rng.getNextU(), this.mean, this.stdDev), getYVal(rng.getNextU(),this.mean, this.stdDev));
 		}
 		return (sum / this.sampleSize);
 	}
@@ -28,8 +32,8 @@ public class Simulation {
 		return Math.sqrt(Math.pow(y_1, 2) + Math.pow(y_2, 2));
 	}
 
-	private double getYVal() {
-		NormalDistribution normDist = new NormalDistribution(this.mean, this.stdDev);
-		return normDist.inverseCumulativeProbability(rng.getNextU());
+	public static double getYVal(double prob, double mean, double stdDev) {
+		NormalDistribution normDist = new NormalDistribution(mean, stdDev);
+		return normDist.inverseCumulativeProbability(prob);
 	}
 }
